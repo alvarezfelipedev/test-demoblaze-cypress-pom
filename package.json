@@ -1,0 +1,14 @@
+{
+  "name": "test-demoblaze-cypress-pom",
+  "version": "1.0.0",
+  "description": "Test carried out with cypress on the Demo Blaze website, using POM as design pattern",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run --headed"
+  },
+  "author": "Felipe Alvarez",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.8.0"
+  }
+}
