@@ -13,9 +13,13 @@ export class CommonPageHelper {
         CommonPageElements.login.click()
     }
 
-    /* static verifySignedUser(username) {
+    static verifySignedUser(username) {
         CommonPageElements.nameOfUser.should('contain', `Welcome ${username}`)
-    } */
+    }
+
+    static clickOnCartOption() {
+        CommonPageElements.cart.click();
+    }
 
     static generateRandomString = (length = 10) => {
         let result = "";

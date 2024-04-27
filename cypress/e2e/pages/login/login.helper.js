@@ -1,15 +1,24 @@
+import { CommonPageHelper } from "../common-page/common-page.helper";
 import { LoginElements } from "./login.elements";
 
 export class LoginHelper {
     static insertUsername(username) {
-        LoginElements.elements.username.type(username);
+        LoginElements.elements.username.invoke('val', username);
     }
 
     static insertPassword(password) {
-        LoginElements.elements.password.type(password);
+        LoginElements.elements.password.invoke('val', password);
     }
 
     static clickOnLoginButton() {
         LoginElements.elements.loginButton.click();
+    }
+
+    static login(username, password) {
+        CommonPageHelper.clickOnLoginOption();
+        this.insertUsername(username);
+        this.insertPassword(password);
+        this.clickOnLoginButton();
+        CommonPageHelper.verifySignedUser(username);
     }
 }

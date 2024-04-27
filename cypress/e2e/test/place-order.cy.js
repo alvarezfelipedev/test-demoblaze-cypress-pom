@@ -1,7 +1,10 @@
+import { CartHelper } from "../pages/cart/cart.helper";
 import { CommonPageHelper } from "../pages/common-page/common-page.helper"
 import { HomeConstants } from "../pages/home/home.constants";
 import { HomeHelper } from "../pages/home/home.helper";
 import { LoginHelper } from "../pages/login/login.helper";
+import { PlaceOrderConstants } from "../pages/place-order/place-order.constants";
+import { PlaceOrderHelper } from "../pages/place-order/place-order.helper";
 import { SignUpHelper } from "../pages/sign-up/sign-up.helper";
 
 describe("Place order", function () {
@@ -9,23 +12,23 @@ describe("Place order", function () {
         const username = CommonPageHelper.generateRandomString();
         const password = CommonPageHelper.generateRandomString();
         const productName = HomeConstants.testData.productName;
+        const orderTestData = PlaceOrderConstants.testData;
 
         CommonPageHelper.navigateToTheAplication();
-        CommonPageHelper.clickOnSignUpOption();
-        SignUpHelper.insertUsername(username);
-        SignUpHelper.insertPassword(password);
-        SignUpHelper.clickOnSignUpButton();
-
-
-        CommonPageHelper.clickOnLoginOption();
-        LoginHelper.insertUsername(username);
-        LoginHelper.insertPassword(password);
-        LoginHelper.clickOnLoginButton();
-        // CommonPageHelper.verifySignedUser(username);
-
+        SignUpHelper.createUserAccount(username, password)
+        LoginHelper.login(username, password);
         CommonPageHelper.clickOnHomePage();
         HomeHelper.clickOnProductName(productName)
+        CommonPageHelper.clickOnCartOption();
+        CartHelper.clickOnPlaceOrderButton();
 
-        cy.wait(5000);
+        PlaceOrderHelper.insertName(orderTestData.name);
+        PlaceOrderHelper.insertCountry(orderTestData.country);
+        PlaceOrderHelper.insertCity(orderTestData.city);
+        PlaceOrderHelper.insertCreditCard(orderTestData.creditCard);
+        PlaceOrderHelper.insertMonth(orderTestData.month);
+        PlaceOrderHelper.insertYear(orderTestData.year);
+        PlaceOrderHelper.clickOnPurchaseButton()
+        PlaceOrderHelper.verifyPurchaseSuccessful();
     });
 })

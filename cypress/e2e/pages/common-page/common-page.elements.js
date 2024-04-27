@@ -7,11 +7,15 @@ export class CommonPageElements {
         return cy.get('a[data-target="#logInModal"]')
     }
 
-    /* static get nameOfUser() {
+    static get nameOfUser() {
         return cy.get('#nameofuser')        
-    } */
+    }
 
     static get home() {
         return cy.contains('a', 'Home');
+    }
+
+    static get cart() {
+        return cy.get('a#cartur');
     }
 }
